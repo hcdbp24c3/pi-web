@@ -111,6 +111,11 @@ jobs:
           build-args: |
             PI_WEB_VERSION=${{ needs.check.outputs.pi_web_version }}
             PI_AGENT_VERSION=${{ needs.check.outputs.pi_agent_version }}
+          # GitHub Actions cache: reuse layers between runs (free, per-repo)
+          # mode=max caches ALL layers, not just the final one — so apt/nodejs/
+          # bun/pi layers are reused even when the npm install layer changes.
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Record built versions
         run: |
