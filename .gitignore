@@ -1,0 +1,4 @@
+.hive/
+.hive2/
+node_modules/
+*.log
