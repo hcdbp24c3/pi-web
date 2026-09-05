@@ -32,6 +32,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         procps \
         nano \
         vim \
+        unzip \
+        xz-utils \
     && rm -rf /var/lib/apt/lists/*
 
 # --- Node.js (LTS, >= 22.19.0 required by pi-web) ---
