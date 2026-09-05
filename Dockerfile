@@ -57,5 +57,10 @@ ENV NODE_ENV=production \
     PI_WEB_NO_OPEN=1
 EXPOSE 30141
 
+# --- Healthcheck ---
+# curl đã có sẵn; kiểm tra server phản hồi trên cổng 30141
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+  CMD curl -fsS http://localhost:30141/ >/dev/null 2>&1 || exit 1
+
 # pi-web binds to 0.0.0.0:30141 (reachable from host)
 CMD ["pi-web", "--hostname", "0.0.0.0", "--no-open"]
